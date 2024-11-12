@@ -22,11 +22,6 @@ jobs:
         run: |
           cd backend
           npm install
-
-      - name: Build project
-        run: |
-          cd backend
-          npm run build
           
   docker:
     needs: build  # Solo se ejecuta si la etapa de build fue exitosa
