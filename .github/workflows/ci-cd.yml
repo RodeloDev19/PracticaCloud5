@@ -22,39 +22,3 @@ jobs:
         run: |
           cd backend
           npm install
-
-      - name: Run tests (if applicable)
-        run: |
-          # Incluir pruebas si es necesario
-          echo "Tests passed!"
-
-  docker:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Build Docker image
-        run: |
-          docker build -t my-node-project:latest ./backend
-
-      - name: Log in to Docker Hub
-        env:
-          DOCKER_USER: ${{ secrets.DOCKER_USER }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: |
-          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
-
-      - name: Push Docker image
-        run: |
-          docker tag my-node-project:latest your-dockerhub-username/my-node-project:latest
-          docker push your-dockerhub-username/my-node-project:latest
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: docker
-    steps:
-      - name: Deploy to server
-        run: |
-          echo "Implementa los comandos necesarios para tu despliegue."
