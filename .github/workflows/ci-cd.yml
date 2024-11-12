@@ -23,13 +23,6 @@ jobs:
           cd backend
           npm install
 
-      - name: Build project
-        run: |
-          cd backend
-          npm run build # Cambia el comando si tienes otro para construir tu proyecto
-        env:
-          NODE_ENV: production
-
   docker:
     runs-on: ubuntu-latest
     needs: build  # Este job se ejecutará solo si la etapa de 'build' fue exitosa
